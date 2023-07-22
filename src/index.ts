@@ -129,6 +129,7 @@ async function setupViewer() {
           trigger: ".second",
           start: "top bottom",
           end: "top 80%",
+          markers: true,
           scrub: true,
           immediateRender: false,
         },

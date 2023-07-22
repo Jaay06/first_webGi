@@ -162,6 +162,7 @@ button:hover {
   font-weight: 700;
   width: 130px;
   height: 50px;
+  color: #000000;
 }
 
 .custom--bg {
@@ -242,7 +243,7 @@ button:hover {
     overflow-x: hidden;
   }
 
-  .hero {
+  .hero-container {
     margin-top: -90px;
   }
 
