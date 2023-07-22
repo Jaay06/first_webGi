@@ -1,18 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>WebGi starter</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+  </head>
 
-<head>
-	<title>WebGi starter</title>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-</head>
+  <body>
+    <div class="content">
+      <nav class="nav-bar">
+        <div class="logo">
+          <img class="img" src="./assets/logo.svg" />
+          <p class="logo-text">World Tools</p>
+        </div>
+        <button class="btn-navbar">BUY NOW</button>
+      </nav>
+    </div>
 
-<body>
-	<div id="webgi-canvas-container">
-		<canvas id="webgi-canvas"></canvas>
-	</div>
+    <div class="main-container">
+      <section class="hero section">
+        <h2 class="hero-header">Perfect Drill</h2>
+        <div class="hero-text">
+          <p class="">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia
+            dolores eveniet tenetur provident est. Soluta. Lorem, ipsum dolor
+            sit amet consectetur adipisicing elit. Dolore, minus!
+          </p>
+          <button class="hero-btn">READ MORE</button>
+        </div>
+      </section>
 
-	<script src="src/index.ts" type="module"></script>
-</body>
+      <section class="section second">
+        <div class="section-two-container">
+          <h2 class="hero-two-header">Comfortable to use</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+            architecto molestias amet modi voluptatibus cum sequi nisi voluptate
+            repellat. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Quo, corporis.
+          </p>
+        </div>
+        <div class="custom--bg"></div>
+      </section>
 
+      <section class="section third">
+        <div class="section-three-container">
+          <h2 class="hero-two-header">Wood and metal</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+            architecto molestias amet modi voluptatibus cum sequi nisi voluptate
+            repellat. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Perferendis, temporibus.
+          </p>
+          <button class="customise-btn">MAKE YOURS</button>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <button class="back_to_top-btn">BACK TO TOP</button>
+      </footer>
+    </div>
+
+    <div id="webgi-canvas-container">
+      <canvas id="webgi-canvas"></canvas>
+      <button class="customise-btn button-exit">EXIT</button>
+    </div>
+
+    <div class="customizer-container">
+      <ul class="colors">
+        <li class="button-colors yellow"></li>
+        <li class="button-colors white"></li>
+        <li class="button-colors black"></li>
+      </ul>
+    </div>
+
+    <script src="src/index.ts" type="module"></script>
+  </body>
 </html>
