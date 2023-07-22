@@ -17,6 +17,8 @@ import {
   MeshStandardMaterial2,
   Color,
   mobileAndTabletCheck,
+  addBasePlugins,
+  AssetImporter,
 
   // Color, // Import THREE.js internals
   // Texture, // Import THREE.js internals
@@ -53,6 +55,7 @@ async function setupViewer() {
   await viewer.addPlugin(GammaCorrectionPlugin)
   await viewer.addPlugin(SSRPlugin)
   await viewer.addPlugin(SSAOPlugin)
+  viewer.isAntialiased
   // await viewer.addPlugin(DiamondPlugin)
   // await viewer.addPlugin(FrameFadePlugin)
   // await viewer.addPlugin(GLTFAnimationPlugin)
@@ -60,7 +63,39 @@ async function setupViewer() {
   await viewer.addPlugin(BloomPlugin)
 
   // or use this to add all main ones at once.
-  //   await addBasePlugins(viewer)
+  // await addBasePlugins(viewer)
+
+  const importer = manager.importer as AssetImporter
+
+  importer.addEventListener("onProgress", (event) => {
+    const progressRatio = event.loaded / event.total
+    console.log(progressRatio)
+
+    document
+      .querySelector(".progress_bar_fill")
+      ?.setAttribute("style", `transform: scaleX(${progressRatio})`)
+  })
+
+  importer.addEventListener("onLoad", (event) => {
+    console.log("done")
+
+    document.querySelector(".loading_overlay")?.setAttribute(
+      "style",
+      `  visibility: hidden;
+    `
+    )
+
+    gsap.fromTo(
+      ".hero",
+      { xPercent: -150, opacity: 0, duration: 2, ease: "power4.inOut" },
+      {
+        xPercent: 0,
+        opacity: 1,
+      }
+    )
+
+    document.body.style.overflowY = "auto"
+  })
 
   // Add more plugins not available in base, like CanvasSnipperPlugin which has helpers to download an image of the canvas.
   await viewer.addPlugin(CanvasSnipperPlugin)
@@ -104,7 +139,7 @@ async function setupViewer() {
         // markers: true,
         start: "top bottom",
         end: "top top",
-        scrub: true,
+        scrub: 0.5,
         immediateRender: false,
       },
       onUpdate,
@@ -118,7 +153,7 @@ async function setupViewer() {
           // markers: true,
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.5,
           immediateRender: false,
         },
       })
@@ -130,7 +165,7 @@ async function setupViewer() {
           start: "top bottom",
           end: "top 80%",
           // markers: true,
-          scrub: true,
+          scrub: 0.5,
           immediateRender: false,
         },
       })
@@ -145,7 +180,7 @@ async function setupViewer() {
           //   markers: true,
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.5,
           immediateRender: false,
         },
         onUpdate,
@@ -159,7 +194,7 @@ async function setupViewer() {
           //   markers: true,
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.5,
           immediateRender: false,
         },
       })
