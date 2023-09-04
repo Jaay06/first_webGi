@@ -40,13 +40,14 @@ async function setupViewer() {
 
   const isMobile = mobileAndTabletCheck()
 
+  // adding scroll smoothner
   const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-    direction: "vertical", // vertical, horizontal
-    gestureDirection: "vertical", // vertical, horizontal, both
-    smooth: true,
-    mouseMultiplier: 1,
+    orientation: "vertical", // vertical, horizontal
+    gestureOrientation: "vertical", // vertical, horizontal, both
+    smoothWheel: true,
+    wheelMultiplier: 1,
     smoothTouch: false,
     touchMultiplier: 2,
     infinite: false,
@@ -98,7 +99,6 @@ async function setupViewer() {
 
   importer.addEventListener("onProgress", (event) => {
     const progressRatio = event.loaded / event.total
-    console.log(progressRatio)
 
     document
       .querySelector(".progress_bar_fill")
@@ -106,7 +106,6 @@ async function setupViewer() {
   })
 
   importer.addEventListener("onLoad", (event) => {
-    console.log("done")
     lenis.start()
 
     document.querySelector(".loading_overlay")?.setAttribute(
@@ -321,6 +320,13 @@ async function setupViewer() {
       onComplete: enableControllers,
     })
   })
+
+  //! hacking lol (this made the scroll smooth)
+  viewer.scene.activeCamera.setCameraOptions({ controlsEnabled: false })
+  main_container.style.visibility = "visible"
+  colorPicker.style.visibility = "hidden"
+  canvasContainer.style.pointerEvents = "none"
+  document.body.style.cursor = "default"
 
   exitBtn?.addEventListener("click", () => {
     viewer.scene.activeCamera.setCameraOptions({ controlsEnabled: false })
